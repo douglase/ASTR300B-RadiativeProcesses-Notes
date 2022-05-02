@@ -1,0 +1,526 @@
+% XeLaTeX can use any Mac OS X font. See the setromanfont command below.
+% Input to XeLaTeX is full Unicode, so Unicode characters can be typed directly into the source.
+
+% The next lines tell TeXShop to typeset with xelatex, and to open and save the source with Unicode encoding.
+
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt]{report}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{hyperref}
+% Will Robertson's fontspec.sty can be used to simplify font choices.
+% To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
+% and change "Hoefler Text" to any of these choices.
+
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+\title{ Radiative Processes in Astrophysics\\Selected review topics for ASTR 300B}
+\author{Ewan S Douglas}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+% For many users, the previous commands will be enough.
+% If you want to directly input Unicode, add an Input Menu or Keyboard to the menu bar 
+% using the International Panel in System Preferences.
+% Unicode must be typeset using a font containing the appropriate characters.
+% Remove the comment signs below for examples.
+
+% \newfontfamily{\A}{Geeza Pro}
+% \newfontfamily{\H}[Scale=0.9]{Lucida Grande}
+% \newfontfamily{\J}[Scale=0.85]{Osaka}
+
+% Here are some multilingual Unicode fonts: this is Arabic text: {\A السلام عليكم}, this is Hebrew: {\H שלום}, 
+% and here's some Japanese: {\J 今日は}.
+\newpage
+
+
+\section{Emission and Absorption}
+\subsection{$j$: spontaneous emission}
+
+\( \boxed{j_\nu=\frac{dE}{dVd\Omega dt d\nu}} [\frac{energy}{m^3*steradians*time*hz}] \)
+for an isotropic medium $\j_\nu=\frac{power}{4\pi*vol*freq}$
+\subsection{$\epsilon$: Emissivity}
+$\epsilon$   ``the energy emitted spontaneously per unit frequency per unit time per unit mass''.
+Mass dependent Spontaneous emission: \\
+$\boxed{j=\frac{\epsilon_\nu\rho}{4\pi}}$\\
+ isotropic \( \leftrightarrow \epsilon_\nu=4\pi \frac{dE}{\rho dV dt d\nu d\Omega} \)\\
+ (this is energy radiated into a cone $d\Omega$)\\
+ \(\boxed{dI_\nu=j_\nu ds} \)
+ \subsection{absorption}
+ $[\frac{1}{length}]$\\
+ \( dI=-\alpha I_\nu ds \) \\
+ \( \boxed{\alpha=n\sigma=\rho\kappa_\nu } \) \\
+ \(\rightarrow dI=-n\sigma_\nu I_\nu ds \) \\
+ $\sigma$ is the effective absorbing cross section.\\
+ $\kappa$ is mass absorption co-efficient. AKA:" Opacity"[area/gram].\\ 
+ ABSORPTION: includes Stimulated Emission and True Absorption.\\ thus it's anything that changes with intensity.
+
+
+ \section{Equation of Radiative Transfer}
+ 
+ Solution:
+ \( \boxed{I_\nu(\tau_\nu)=I_\nu(0)e^{-\tau_\nu}+\int_0^{\tau_\nu} S_\nu(\tau_\nu)e^{-(\tau_\nu-\tau_\nu')}d\tau' } \)
+ 
+ 
+Generally with $+\tau$ along S where $S$ is the source function.\\
+ remember that $I$ and $S$ can vary with $\tau$.\\
+ \( d\tau_\nu(s)\equiv \alpha_\nu(s)ds\) \\
+ 
+ The differential equation:
+ \(\boxed{\frac{dI}{ds}=j_\nu-\alpha I_\nu }\) \\
+ 
+ \(\frac{dI}{\alpha ds}=j_\nu/\alpha-I_\nu =S_\nu-I_\nu=\frac{dI_\nu}{d\tau_\nu} \) \\
+derivation: \\
+\( \frac{dI_\nu}{d\tau_\nu} = S_\nu-I_\nu \) \\
+multiply by $e^{+\tau_\nu}$\\
+\(\rightarrow \frac{e^{\tau_\nu}dI_\nu}{d\tau_\nu} = e^{\tau_\nu}S_\nu-e^{\tau_\nu} I_\nu \) \\
+\(\rightarrow \frac{e^{\tau_\nu}dI_\nu}{d\tau_\nu} + e^{\tau_\nu} I_\nu = e^{\tau_\nu}S_\nu \) \\
+\(\rightarrow \frac{d(I_\nu e^{\tau_\nu})}{d\tau_\nu} = e^{\tau_\nu}S_\nu \) \\ 
+Integrate from zero to $\tau$ and mark the variables 'of integration' $\tau$ with primes.\\
+\(\rightarrow \int_0^{\tau_\nu} \frac{d(I_\nu(\tau') e^{\tau_\nu'})}{1} =  \int_0^{\tau_\nu} e^{\tau_\nu'}S_\nu(\tau') d\tau_\nu'\) \\
+\(\rightarrow I_\nu(\tau) e^{\tau_\nu} -e^0 I_\nu(0) =  \int_0^{\tau_\nu} e^{\tau_\nu'}S_\nu(\tau') d\tau_\nu'\) \\
+\(\rightarrow I_\nu(\tau) -  I_\nu(0)e^{-\tau_\nu}  = e^{-\tau_\nu}  \int_0^{\tau_\nu} e^{\tau_\nu'}S_\nu(\tau') d\tau_\nu'\) \\
+
+\(\rightarrow I_\nu(\tau) =   I_\nu(0)e^{-\tau_\nu}  +   \int_0^{\tau_\nu} e^{\tau_\nu'}e^{-\tau_\nu}S_\nu(\tau') d\tau_\nu' =\int_0^{\tau_\nu} S_\nu(\tau')  e^{-(\tau_\nu-\tau_\nu')}d\tau_\nu'\) \\
+$S$ is independent of depth if homogenous:\\
+\( \therefore  I_\nu(\tau) =  I_\nu(0)e^{-\tau_\nu} + S_\nu (e^{-(\tau_\nu-\tau_\nu)}-e^{-(\tau_\nu-0)})=\boxed{ I_\nu(0)e^{-\tau_\nu}  +S_\nu (1-e^{-\tau_\nu}) =I_\nu(\tau) }\)
+to remember this: Intensity as a function of optical depth is the attenuated initial intensity plus the source function minus the source function attenuated.\\
+Optically THICK: As $\tau\rightarrow \infty$ then $I\approx S$\\
+Optically THIN: for $\tau<<1$ taylor expand the exponential.  (the initial light is attenuated by $\tau$ and the source function is getting brightened.)\\
+$I_\nu(\tau)=I_\nu(0)+(S_\nu-I(0))\tau$
+
+
+ 
+ \section{Electric Dipole Emission}
+ 
+ An oscillating electric dipole leads to an electromagnetic wave. 
+ 
+ A simple case could be an ideal or (``Hertzian'') dipole antenna, or a positive and negative charge separated by a short distance $r$. 
+ 
+ Electric dipole:  $\vec{d}=\vec{\mu}=e\vec{r}$.
+ 
+ Equation of motion of an electron in an EM wave field with electric field unit vector $\epsilon$ and amplitude $E_0$:
+ 
+ $m_e\ddot{r}=m_e\frac{\ddot{d}}{e}=e\vec{\epsilon}E_0\sin{\omega_0 \ t}$
+ 
+ re-arrange and integrate over time, $t$, to find $d$.
+ 
+ $\vec{d}=-(\frac{e^2E_0}{m_e \omega_0^2})\vec{\epsilon}\sin(\omega_0 t)$
+ 
+
+\subsection{Larmor Formula (CGS, from R+L)}
+$\vec{n}$ is the trajectory/direction of motion.\\
+from the radiation field equations:\\
+%\(\vec{E}_{rad}=\frac{q}{c}[\frac{\vec{n}}{\kappa^xt3R} \times \{(\vec{n}-\vec{\beta})\times\vec{\dot{\beta}}\}] \)\\
+%\(\vec{B}_{rad}(\vec{r},t)=[\vec{n}\times\vec{E}_{rad}]\)\\
+$R$ is the distance away,  radiation field has $1/R$ dependence, unlike Coulomb field.\\
+\(\kappa\equiv 1-\vec{n}\cdot\vec{\beta}\) 
+assume small $\beta$, that is, non-relativistic ( \(\frac{u}{c}=\beta\)):\\
+\(\rightarrow \vec{E}_{rad}=[(\frac{q}{Rc^2})\vec{n}\times(\vec{n}\times\vec{\dot{u}})]\)\\
+the magnitude of E is proportional to the trajectory cross the acceleration:\\
+\(|E_{rad}|=\frac{q\dot{u}}{Rc^2}\sin\theta\)\\
+
+and \(S=\frac{c}{4\pi}E_{rad}^2=\frac{c}{4\pi}(\frac{q\dot{u}}{Rc^2}\sin\theta)^2\)\\
+
+%(in SI, Poynting vector is $S=\frac{1}{\mu_0}\vec{E}\times \vec{B}\))\\
+Poynting vector is a flux, so to get the power per solid angle multiply by $dA=R^2d\Omega$\\
+
+\(\frac{dP}{d\Omega}=\frac{q^2\dot{u}^2}{4\pi c^3}\sin^2\theta\)\\
+
+Integrate over all solid angles to get Larmor's formula:\\
+\(\boxed{ P=\frac{dW}{dt}=\frac{2q^2\dot{u}^2}{3c^3}}\)\\ 
+emission power from a single accelerated charge:\\
+
+ 
+ \subsection{Poynting Vector}
+The energy of an electromagnetic wave through a surface perpendicular to the wave is given by the Poynting vector which has units of power per area: \\
+\(\boxed{\vec{S}=\frac{c}{4\pi}E_{rad}^2}\)
+
+
+ Integrating in through volume: 
+ $ \int_V \vec{j}\cdot\vec{E} dV +\frac{d}{dt}\int_V\frac{\epsilon E^2 +B^2/\mu}{8\pi}dV=-\int_\Sigma \vec{S}\cdot d\vec{A} $ 
+ thus change in mechanical and field energy in the volume is equal and opposite in sign to the flow out of the Poynting vector out of the surface bounding the volume. \\
+ 
+ \subsection{Thomson scattering}
+  Think of an electron by itself. A plane wave comes along, the $\vec{E}$-field accelerates the electron in an oscillatory motion.  $r_0$ is the ``electron radius",  the characteristic length scale of the classical interaction.
+  
+ for: \( v<<c\):
+ 
+ a linearly polarized wave with $\omega_0$ incident on an electron.\\
+ \(r_0\equiv \frac{e^2}{mc^2}\rightarrow \sigma_T=\int\frac{d\sigma}{d\Omega}d\Omega= 2\pi r_0^2 \int_{-1}^1(1-\mu^2)d\mu=\frac{8\pi}{3}r_0^2 \sim (\frac{e^2}{mc^2})^2\)\\
+ 
+ \[(\frac{d\sigma}{d\Omega})_{pol.}=<S>=\frac{e^4}{m^2c^4}\sin^2\theta\]
+ 
+ \newpage
+\section{Polarization}
+See figures
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{elliptical_pol.png}
+\caption{Elliptical Polarization, (\url{http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polclas.html}.}
+\includegraphics[width=\textwidth]{stokes_commonvisionblox.png}
+\caption{Stokes parameters. (\url{https://help.commonvisionblox.com/Polarization/html_english_theory-of-operation.html}).}
+\label{default}
+\end{center}
+\end{figure}
+
+
+\section{Bremsstrahlung}
+
+See: \url{https://casper.astro.berkeley.edu/astrobaki/index.php/Thermal_Bremsstrahlung} and Rybicki and Lightman Chapter 5. 
+
+Acceleration of a charge in the coulomb field of another. Breaking Radiation or "Free free".\\
+Assume protons are stationary.\\
+The most important equations:\\
+Thermal emissivity in [CGS]: \( \boxed{\epsilon_\nu^{ff}=const*T^{-1/2}e^{\frac{-h\nu}{kT}}n_en_i}\)\\
+
+Integrating over wavelengths, thermal emissivity in [CGS]: 
+
+\( \boxed{\frac{dW}{dtdV}=\epsilon^{ff}=(\frac{2\pi kT}{3m})^{1/2}\frac{2^5\pi^6}{3hmc^3}Z^2n_en_i\bar{g_B}=1.4*10^{-27}T^{1/2}n_e n_i Z^2\bar{g_B}} [\frac{ergs}{cm^3s}]\)\\
+$\bar{g_b}$ is typically 1 or 2.\\
+this comes from frequency integrating the expression for thermal Bremsstrahlung, which itself is the integral of general Bremsstrahlung ( the function $ \frac{dW}{dtdVd\omega}$) over a Maxwell Boltszmann distribution of velocities. from a discrete cut-off velocity to infinity:\\
+\(\frac{dW}{dtdVd\omega}=\frac{\int_0^\infty \frac{dW}{dtdVd\omega}v^2exp(-mv^2/2kT)dv}{\int_0^\infty v^2exp(-mv^2/2kT)dv}\)
+deriving the general bremstrahlung function requires dipole approximation $\vec{d}=\Sigma_i\vec{r}_iq_i\rightarrow \ddot{\vec{d}}=\Sigma_i\dot{\vec{v}}_iq_i$\\
+for a single collision:\( \ddot{\vec{d}}=-e\dot{\vec{v}}$.\\
+Fourier transform from time domain to frequency space: $d(t)=\int_{-\infty}^\infty e^{-i\omega t}\hat{d}(\omega)d\omega$\\
+hats represent the transform: \(\hat{\ddot{d}}=-\omega^2\hat{d}(\omega)=\frac{e}{2\pi}\int_{-\infty}^{\infty}\dot{v}e^{i\omega t}dt\)
+for small frequencies integral is about 1 and \(\rightarrow \hat{d}(\omega)=\frac{e\Delta v}{2\pi \omega^2}\) \\
+from the non-relativistic Dipole Approximation we can relate the dipole's dependence on frequency to power: \(\frac{dW}{d\omega}=\frac{8\pi \omega^4}{3c^3}|\hat{d}(\omega)|^2=\frac{8\pi \omega^4}{3c^3}|\frac{e\Delta v}{2\pi \omega^2}|^2\)\\
+We are only interested in motion perpendicular to the path because the path is nearly linear and velocity in path direction is so great it will change very little. \\
+\(\Delta v$ is the integral of the equation of motion $\perp$ to the path from $-\infty$ to $\infty$. \(\frac{d V_\perp}{d t} =\frac{Ze^2}{mR^2}\cos\theta=\frac{Ze^2b}{m((b^2+v^2t^2)^{3/2})}\)\\
+(this is a lot like the derivation of charge collisional plasma/Landau length, except there we assume $V_\perp \approx v_0$\\
+\(\rightarrow \Delta v=v_f-v_i=\int_{-\infty}^{\infty}\frac{Ze^2b}{m((b^2+v^2t^2)^{3/2})}dt=\frac{2Ze^2}{mbv}\)\\
+(Since $\cos\theta=b/R$; this $b$ is the impact parameter, in the Bremsstrahlung derivation we assume for simplicity electron speed is such that it is approximately a straight line (a small angle approximation)) and thus the impact parameter is the closest approach of the electron to the ion.\\ \(b_{min}\approx \frac{h}{mv}\), $b_{max}\equiv \frac{v}{\omega}\)\\
+
+\section{Einstein Co-efficients}
+Units [\( \frac{1}{hz}]\) 
+\subsection{$A_{21}$ Spontaneous emission}
+\( A_{21}=\frac{prob. \ trans.\ 2 \rightarrow 1}{seconds} \)
+\subsection{Absorption $B_{12}$}
+\( \bar{J} B_{12}=\frac{absorption \ trans. \ probability.}{seconds} \)
+
+\subsection{$B_{21}$ Stimulated emission}
+\( \bar{J} B_{21}=\frac{stimulated \ emission\ trans.\ probablity.}{seconds} \)
+
+\subsection{Einstein Relations:} 
+are Independent of T.\\
+In TE the rate of energy in equals the rate of energy out.\\
+
+
+Following the approach of Rybicki and Lightman, Chapter 1, when $\bar{J}$ is the mean intensity:
+
+\begin{centering}
+
+ \( n_2A_{21}+n_2B_{21}\bar{J}=n_1B_{12}\bar{J} \)
+ 
+\(\boxed{\frac{B_{12}}{B_{21}}=\frac{g_2}{g_1} }\)
+
+\(\boxed{A_{21}=\frac{2h\nu^3}{c^2}B_{21} } \)
+
+\end{centering}
+
+These equations can also be defined and derived using $u_\nu$, the energy density:
+\begin{equation}
+u_\nu=\frac{4\pi}{c} J_\nu
+\end{equation}
+
+This is why you have also seen:
+\begin{equation}
+{A_{21}=\frac{8\pi h\nu^3}{c^3}B_{21} }
+\end{equation}
+
+Where the difference is in how $B_{21}$ and $B_{12}$ are defined. in the energy density formulation followed by Draine:
+
+ \( n_2A_{21}+n_2B_{21}u_\nu = n_1B_{12}u_\nu  \)
+
+
+\subsection{Relating Einstein to Radiative Coefficients}\label{sec:einsteinradiative}
+R+L chapter 1, p.31.\\
+Energy is conserved.\\
+Emission:\\
+assume emission and absorption emission line profiles are equivalent. \\
+$\phi(\nu)$ is the general emission line profile.\\
+\( dE=j_\nu dVd\Omega d\nu dt =(h\nu_0)\phi (\nu)n_2A_{21}dVd\Omega dt d\nu \) \\
+\(\rightarrow \boxed{j_\nu=\frac{h\nu_0}{4\pi}\phi(\nu)n_2 A_{21} } \) \\
+Absorption:\\
+(remember, stimulated emission and absorption are inseparable.)\\
+\( dE=I _\nu dAdt d\Omega d\nu =\frac{h\nu_0}{4\pi}(B_{12}n_1-n_2B_{21})\phi(\nu)I_\nu \)\\
+$dI_\nu=-\alpha I ds$ and dV=dAds.\\
+$\rightarrow dE=I_\nu dt dA d\nu d\omega=dVdtd\Omega d\nu(\frac{h\nu_0}{4\pi})(B_{12}n_1-n2B_{21})\phi(\nu)I_\nu$\\
+\(\boxed{\alpha_\nu=\frac{h\nu}{4\pi}(n_1B_{12}-n_2B_{21})\phi(\nu) }\)
+absorption is the energy over an isotropic distribution, proportional to the difference between ground and excited states times their transition coefficients.\\
+Recall: The Einstein relations and LTE Bolzmann eq. \\
+\( \rightarrow \alpha= \frac{h\nu}{4\pi}n_1B_{12}[1-exp(\frac{h\nu}{kT})]\phi(\nu)\)
+
+
+
+
+\subsection{Non-Thermal}
+If not in LTE, the Boltzmann eq. doesn't hold, i.e. \( \frac{n_1}{n_2} \neq \frac{g_1}{g_2}exp(\frac{h\nu}{kT}) \) \\
+A "Normal" non-thermal distribution is $\frac{n_1}{g_1}>\frac{n_2}{g_2}$\\
+A an "Inverted" Distribution is: $\frac{n_1}{g_1}<\frac{n_2}{g_2}\rightarrow \alpha<0 $ and is light amplifying (e.g. a MASER..).\\
+
+\section{Line Broadening}
+Irwin 1st Ed. Chapter 9.3, 2nd ed Chapter 11.3. R+L, section 10.6.
+The line shape function describes the morphology of a line and integrates to unity:
+
+\(\int_{-\infty}^{\infty}\Phi(\nu)d\nu=1\)
+
+\subsection{Doppler:}
+\( \nu_D=\frac{\nu_0}{c}\sqrt{\frac{2kT}{m_a}} \) (neglecting turbulence)\\
+since $V_d=v_{therm}$ and $\nu_D=\nu_0 V_d/c$\\
+and $\Delta \lambda=2\frac{\lambda^2}{c}\sqrt{\frac{2kT}{m}}\) \\
+since $\Delta \lambda/\lambda_0=v/c$\\
+Doppler Line profile:\\
+\( \phi(\nu)=\frac{1}{\nu_D\sqrt{\pi}}e^{-(\nu-\nu_0)^2/\Delta \nu_D^2} \)
+(Get this from plugging doppler into a Maxwell-Boltzmann distribution)\\
+\subsection{natural broadening:}
+From Heisenberg Uncertainty. \\
+\( \Delta \lambda=\frac{hc}{\Delta E}=\frac{hc}{\frac{\hbar}{\Delta t}} = \frac{\lambda^2}{2\pi c}(\frac{1}{\Delta t_i}-\frac{1}{\Delta t_f}) \) \\
+\( \gamma =\Sigma_{n'} A_{n n'}=\) total spontaneous decay from n summed of  $n'$ ( all lower levels). (This is Einstein A).\\
+\( \phi(\nu)=\frac{\gamma/4\pi^3}{(\nu-\nu_0)^2+(\gamma/4\pi)^2 }\)\\
+\subsection{for collisional} $\gamma\rightarrow \Gamma=\gamma+2\nu_{coll} $\\
+and $ \phi(\nu) $ is the convolved doppler and lorentz  profiles.\\
+
+
+\section{Photo-ionization}
+
+ $r_{stromgren}\approx (\frac{3N}{4\pi\alpha})^{1/3}n_H^{-2/3}$\\
+Find by considering Equalibrium and: $N=number_{photons}/sec$ from a star generating ionizing radiation (O or B type) in the Lyman continuum ($\lambda <91.2nm$), $\alpha$=QM recombination coeffiency. $n_e=n_H$ if it's a pure hydrogen cloud.\\ 
+equilibrium means: \\electron ion recombination rate = ionizing photon rate.\\
+$\rightarrow \alpha n_e n_H (\frac{4}{3}\pi R^3_s)= \alpha n_H^2(\frac{4}{3}\pi R^3_s)=N$\\
+this recombination in a HII region leads to a cascade of transition $n=3\rightarrow n=2$=red optical balmer emisison, as in Orion Neb.  and that's what you see in visible.
+
+
+\section{Maxwell's Equations }
+\subsection{maxwell's equations in SI units}  
+in MKS or SI units, Maxwell's equations are:
+
+1) Faraday: $\nabla \times \vec{E} = \frac{-\partial \vec{B}}{\partial t}$.
+
+2) Ampere-maxwell: $\nabla \times \vec{B} =\mu_o \epsilon_o\frac{\partial \vec{E}}{\partial t}+\mu_o \vec{J}$
+
+3. $\nabla \cdot \vec{B}=0$
+
+4. Gauss': $\nabla \cdot \vec{E}=q(n_i-n_e)/\epsilon_0=\rho/\epsilon_0$
+
+current density must be related to velocity of the charged particles: 3) $\vec{J} = e n_e \vec{u_e}+e n_i \vec{v_i} =e n_e \vec{u_e}+0$ (ion terms can be dropped as they have great inertia.
+
+\subsection{Maxwell's equations in CGS units}  
+$\mu_0$ becomes $1/c^2$ and $\epsilon_0$ is subsumed into the definition of charge.
+
+1) Faraday relates curl of electric field to a time changing magnetic field: $\nabla \times \vec{E} = \frac{-1}{c}\frac{\partial \vec{B}}{\partial t}$.
+
+2) Ampere-maxwell, relates curl of magnetic field to time changing electric field and flux density. Simplifies to Ampere's if electric field is static:
+ $\nabla \times \vec{B} =\frac{1}{c} \frac{\partial \vec{E}}{\partial t}+\frac{4\pi}{c}\vec{J}$
+
+3. The divergence of a magnetic field is zero: $\nabla \cdot \vec{B}=0$
+
+4. Gauss's law relates electric field divergence to charge density: $\nabla \cdot \vec{E}=4\pi\rho$
+
+where $\rho$ is charge density.
+
+\subsection{dispersion relation for light in a vacuum}
+a EM wave in the absence of charges propagates according to Maxwell's equations and we can neglect current density $\vec{J}$.
+
+  Since $k$ is the propagation direction and k$ \perp B$ and $E$.
+  
+$\nabla \times(\nabla \times \vec{B})=\mu_o(\nabla \times \vec{\dot{E}})=-\mu_o\epsilon_o \vec{\ddot{B}}=\vec{k}\times(\vec{k} \times \vec{B}) \\
+=\vec{k}\times\vec{k} \times \vec{B}=[\vec{k}(\vec{k} \cdot \vec{B}) - (\vec{k} \cdot \vec{k})\vec{B}]=0 -k^2\vec{B}=  -\mu_o\epsilon_o \vec{\ddot{B}}= -\mu_o\epsilon_o \omega^2 \vec{B} $
+
+This is a vector wave equation that can also be derived in terms of $E$.
+
+
+Then $\vec{B}$s cancel and: $k^2=\mu_o \epsilon_o \omega^2=\frac{\omega^2}{c^2}$ since $c=\sqrt{1/(mu_o \epsilon_o)}$.
+
+or in terms of $E$ and in CGS the result would be: $\nabla^2\vec{E}=\frac{1}{c^2}\frac{\partial^2 E}{\partial t^2}$
+
+Possible solutions:
+
+$\vec{E}=\hat{a_1}E_0e^{i(\vec{k}\cdot\vec{r} -\omega t)}$ or $\vec{B}=\hat{a_2}B_0e^{i(\vec{k}\cdot\vec{r} -\omega t)}$
+
+
+
+ \section{Plane parallel}
+ 
+ An atmosphere that is horizontally continuous and infinite and vertically layered and thus axially symmetric. 
+The mean intensity is given by: 
+\( J_\nu(z)=\frac{1}{4\pi}\int_0^\pi(z,\theta)2\pi \sin\theta d\omega= \frac{1}{2}\int_{-1}^{+1}I_\nu d\mu\)
+where:
+$\mu \equiv \cos(\theta)$
+
+\section{Boltzmann Equation}
+ The ratio of probabilities (P) that a system will be in a $g_b$ degenerate state, which has the energy  $E_b$, vs. a $g_a$ state with energy $E_a$. For a collection of atoms in different states:\\
+ $\frac{P(E_b)}{P(E_a)} =\frac{g_b}{g_a}e^{-(E_b-E_a)/kT}=\frac{N_b}{N_a}=\frac{g_b}{g_a}e^{-(h\nu)/kT}$\\
+degeneracies, $g_i$, are just the number of spots with that energy which are allowed by a system. For example, hydrogen can have an electron in one of two ground states in the s shell, so the degeneracy of the ground state is two, $g_{ground}=2$. But an energetic atom can have an electron in one of 6 p states, so that has degeneracy of 6.
+ 
+ \section{Maxwell-Boltzmann Distribution/Local Thermodynamic Equilibrium (LTE)}
+ For a local thermal equilibrium distribution, the number of particles per unit volume having speeds between $v$ and $v+dv$ is given by:\\
+ 
+ $n_vdv=n(\frac{m}{2\pi KT})^{3/2} e^{-mv^2/2kT}4\pi v^2 dv$ 
+ 
+ which is the density times   (mass over thermal energy)$^{3/2}$.
+   the exponential of the ratio of kinetic to thermal energy times the differential velocity density.
+ remember: \\
+$ v_{most probable}=\sqrt{\frac{2kT}{m}}$ \\
+$v_{rms}=\sqrt{\frac{3kT}{m}}$ (higher because of the long tail...).\\
+
+ energy density: $u=\frac{4\pi}{c}\int_0^\infty B_\lambda(T)d\lambda=aT^4=\pi*flux/c$\\
+ Where  $a=4\sigma/c$\\
+
+
+\chapter{part II}
+
+\section{Vibrational Transitions}
+See Seager, Chapter 8.
+For a diatomic molecule, treat as a simple harmonic oscillator with spring constant $C$, reduced mass $\mu$ describing the mass of each nuclei and quantized energy levels. $C$ is proportional to the bond strength, for CO is $\approx$1830 Newton/meters. 
+
+If the system is not near the disassociation energy, the time-independent Schrödinger's equation is:
+
+\(\frac{-\hbar^2}{2\mu}\ddot{\Psi}+Cx^2\Psi=E\Psi\)
+
+The solution  is described by vibrational quantum number $v$:
+
+\(E_vk=h\nu_0(v+1/2)\)
+
+\(E_0=\frac{h\nu_0}{2}\)
+zero-point frequency:
+\( \nu_0=\frac{1}{2\pi}\sqrt{\frac{C}{\mu}}\)
+
+
+If $n_0$ is the ground state, in LTE the Boltzmann distribution of states gives:
+
+\(\frac{n_V}{n_0}=e^{-vh\nu/kT}\)
+
+
+\section{Zeeman Effect}
+%From J.J. Lecture notes and C+O.
+The moving electric charges lead to a magnetic dipole, analogous to the classical current hoop $\vec{\mu}=IA\hat{n}=\frac{1}{2}\int\vec{r}\times\vec{J} dV$.  
+Splits the fine lines by magnetic number, the values of J:\\ $ m_j=-J...J$ are all possible.
+
+The total dipole moment of an atom: 
+
+\[\vec{\mu_{t}}=-\sum_i \frac{1}{2}(\frac{e}{mc})\vec{l}_i+\frac{1}{2}(\frac{2}{mc})\vec{s}_i\]
+\[=- \frac{1}{2}(\frac{e}{mc})(\vec{L}+2\vec{S})\]
+\[=-\frac{1}{2}(\frac{e}{mc})(\vec{J}+\vec{S})\]
+
+Put this dipole moment in a magnetic field, which will excert a force on the electrons, altering their energy levels, that will split the energy levels. The number it is split into depends on the magnetic quantum number, in simple treatments spin is neglected so the important number is $m_l$ (which takes values $-l...0,+l$) but $m_J$ or $M_J$ is the correct quantum number.
+But the only allowable transitions are $\Delta m_J=0\pm1$ are allowed.
+
+the magnitude of the split is 'exactly' proportional to the magnetic field strength: \(\boxed{\nu=\nu_0\pm \frac{qB}{4\pi\mu}}\)
+When B is in Gauss: \({\nu_0\pm1.4\times10^6B }\) [Hz].  
+
+
+
+
+\section{Planetary Equalibrium temperature}
+if $T_o=T_{sun}$ and $a=albedo$ (the reflected fraction). and orbit radius of planet is D. $F=\sigma T^4 [egs/m^2/s]$\\
+absorbing area of planet is flat $A_{abs}=2\pi R^2$\\ 
+$\frac{L_{sun}}{A_{sun}}A_{abs}(1-a)=L_{planet}$\\
+$L_{sun}=A_{emittor}\sigma T_{eff}^4 \rightarrow T_P=T_\odot(1-a)^{1/4}(\frac{R_\odot^2}{2D^2})^{1/4}$\\
+
+
+
+\section{Extinction}
+%from C+O, not radiative.
+at a given wavelength, the distance modulus is 
+\(m_\lambda=M_\lambda+(5log_{10}(\frac{d}{10pc})-5)+A_\lambda\)
+
+where d is the distance in parsecs and A is extinction.\\
+$A=1.086\tau$\\
+derivation of A: $\frac{I}{I_{\lambda,0}}=e^{-\tau_\lambda}$ where $d\tau_\lambda=\kappa_\lambda\rho ds$\\
+$\rightarrow \tau=+\int_0^S\kappa_\lambda\rho ds$\\
+$m_\lambda-m_{\lambda, 0}=-2.5log_{10}(e^{-\tau_\lambda})\approx 1.086\tau_\lambda$\\
+the un-extincted obs. mag. is: $m_{\lambda, 0}=M_\lambda+(distance \ modulus)=M_\lambda-(5log_{10}d-5)$
+
+
+
+\section{HI-21cm line}
+%c+o p.406\\.
+Spin flip transition of hydrogen electrons. 5.9e-6 eV gives a 21 cm or 1420 MHz emission line.
+ 
+$\tau_H=5.2*10^{-23} \frac{N_H}{T\Delta v}$\\
+
+where $N_H$ is column density in $m^{-2}$ and $\Delta v$ is linewidth in $km/s$. Typically: $\Delta v=10km/2$. 
+
+\(A_{21}=2.9e-15\)[1/s]. The reciprocal of this gives the lifetime ($\sim$10million years).
+
+
+\section{Atmospheric Layers}
+%see cravens p.285.
+\subsection{Thermosphere}
+$>$80-90km on earth. where photo-ionization and photo-disassociation from sunlight begin to be important and the temperature begins to increase due to this energy from UV photons. The bottom of the thermosphere is the "mesopause". the top of the thermosphere is the "exobase" where collisions decrease such that  particle trajectories become ballistic.\\ 
+\subsection{Troposphere}
+$<18km$ tropo means turn/change/reaction.\\
+\subsection{mesophere}
+from 50 to 90km. Meso means intermediate.
+\subsection{exobase}
+@ $>\approx 200km$ on earth.\\
+The bottom of the exosphere. 
+The height integrated density accounts for one mean free path of a fast atom for a constant scale height:
+
+\(\int^{\infty}_{r} c n(r) \sigma dr \approx \sigma n(r_c)H =1\) 
+
+explain more.\\
+at exobase Mean free path: $\boxed{l=\frac{1}{n\sigma}=H=\frac{kT}{gm}}$\\
+ \emph{thus the exobase is where the mean free path equals the constant scale height.}
+(OR according to wikipedia, the top of the exosphere is where solar radiation pressure  on a hydrogen atom exceeds earth's gravitational attraction.)\\
+\subsection{stratosphere} is where $O_3$ ozone is present and absorbing UV. photo-disassociaton and recombination heat the stratosphere. it can be approximated by chapman layer theory and is warmer than the regions above and below (but still cooler than thermosphere). % [EXPAND].
+
+\section{atmospheric Scale Height}
+%from as703, 2009, sept 29th. 
+
+$z$ increasing with radius.
+for both neutrals and plasmas, integrate the fluid dynamic momentum equation. assumptions: quasi-neutral, isothermal, static, one dimensional ($z$):
+
+Hydrostatic Equilibrium  gives:
+
+$ m\vec{g}= \frac{\nabla P}{n}  = kT\frac{\nabla n}{n}= k T \nabla ln(n_e)= kT \frac{\partial (ln(n_e))}{\partial z}$\\
+
+Integrate: $\int (\partial ln(n_e))=ln(n_e)=\int \frac{mg}{ kT}\partial z = \frac{mg}{ kT}z+constant$\\
+this gives H, the neutral scale height.\\ $\therefore \ \
+ n_e=n_o e^{\frac{mg}{ kT}z} -->H=\frac{ k T}{mg}$ ]
+ 
+ Since $z$ is increasing with height, $g$ is negative, and H is positive.
+ 
+ \(\therefore  n_e=n_o e^{-z/H}\)
+
+\section{Leaky Greenhouse}
+See Seager Chapter 9.
+Assume equilibrium. $E_{leaving}=E_{incident}\rightarrow F_{leaving}=F_{incident}$.
+$1-\alpha$ is the atmospheric escape/leakage fraction.
+Incident, Stefan-Boltzmann: $F_i=\sigma T_{equilibrium}^4=\sigma T_{e}^4$.
+
+The flux leaving: $\sigma T_e^4 = \sigma T_a^4+\sigma T_s^4(1-\alpha)$
+
+The surface temperature is the sum of the atmospheric and equilibrium fluxes: 
+\(\sigma T_s^4 =\sigma T_e^4+\sigma T_a^4\)
+
+Solve for $T_s$ to find the surface temperature as a function of $T_e$.
+%\section{Relating Spectral Lines to $\tau$}
+%See \ref{sec:einsteinradiative}.
+%\section{Molecules}
+
+\section{albedos}
+Single scattering: $1-\epsilon$\\
+geometric: ratio of observed flux to flux from lambert disk of the same size. A lambert surface scatters isotropically.\\
+Bond: a fraction of light is incident starlight scattering into $4\pi$ for all $\lambda.$
+Spherical: A monochromatic Bond albedo, into $4\pi$ but not all $\lambda$.\\
+\(A_{bond}=\int_0^\infty A_{spherical} d\nu \)
+
+\end{document}  
