@@ -1,0 +1,139 @@
+
+\chapter{part II}
+
+\section{Vibrational Transitions}
+See Seager, Chapter 8.
+For a diatomic molecule, treat as a simple harmonic oscillator with spring constant $C$, reduced mass $\mu$ describing the mass of each nuclei and quantized energy levels. $C$ is proportional to the bond strength, for CO is $\approx$1830 Newton/meters. 
+
+If the system is not near the disassociation energy, the time-independent Schrödinger's equation is:
+
+\(\frac{-\hbar^2}{2\mu}\ddot{\Psi}+Cx^2\Psi=E\Psi\)
+
+The solution  is described by vibrational quantum number $v$:
+
+\(E_vk=h\nu_0(v+1/2)\)
+
+\(E_0=\frac{h\nu_0}{2}\)
+zero-point frequency:
+\( \nu_0=\frac{1}{2\pi}\sqrt{\frac{C}{\mu}}\)
+
+
+If $n_0$ is the ground state, in LTE the Boltzmann distribution of states gives:
+
+\(\frac{n_V}{n_0}=e^{-vh\nu/kT}\)
+
+
+\section{Zeeman Effect}
+%From J.J. Lecture notes and C+O.
+The moving electric charges lead to a magnetic dipole, analogous to the classical current hoop $\vec{\mu}=IA\hat{n}=\frac{1}{2}\int\vec{r}\times\vec{J} dV$.  
+Splits the fine lines by magnetic number, the values of J:\\ $ m_j=-J...J$ are all possible.
+
+The total dipole moment of an atom: 
+
+\[\vec{\mu_{t}}=-\sum_i \frac{1}{2}(\frac{e}{mc})\vec{l}_i+\frac{1}{2}(\frac{2}{mc})\vec{s}_i\]
+\[=- \frac{1}{2}(\frac{e}{mc})(\vec{L}+2\vec{S})\]
+\[=-\frac{1}{2}(\frac{e}{mc})(\vec{J}+\vec{S})\]
+
+Put this dipole moment in a magnetic field, which will excert a force on the electrons, altering their energy levels, that will split the energy levels. The number it is split into depends on the magnetic quantum number, in simple treatments spin is neglected so the important number is $m_l$ (which takes values $-l...0,+l$) but $m_J$ or $M_J$ is the correct quantum number.
+But the only allowable transitions are $\Delta m_J=0\pm1$ are allowed.
+
+the magnitude of the split is 'exactly' proportional to the magnetic field strength: \(\boxed{\nu=\nu_0\pm \frac{qB}{4\pi\mu}}\)
+When B is in Gauss: \({\nu_0\pm1.4\times10^6B }\) [Hz].  
+
+
+
+
+\section{Planetary Equilibrium temperature}
+if $T_o=T_{sun}$ and $a=albedo$ (the reflected fraction). and orbit radius of planet is D. $F=\sigma T^4 [egs/m^2/s]$\\
+absorbing area of planet is flat $A_{abs}=2\pi R^2$\\ 
+$\frac{L_{sun}}{A_{sun}}A_{abs}(1-a)=L_{planet}$\\
+$L_{sun}=A_{emittor}\sigma T_{eff}^4 \rightarrow T_P=T_\odot(1-a)^{1/4}(\frac{R_\odot^2}{2D^2})^{1/4}$\\
+
+
+
+\section{Extinction}
+%from C+O, not radiative.
+at a given wavelength, the distance modulus is 
+\(m_\lambda=M_\lambda+(5log_{10}(\frac{d}{10pc})-5)+A_\lambda\)
+
+where d is the distance in parsecs and A is extinction.\\
+$A=1.086\tau$\\
+derivation of A: $\frac{I}{I_{\lambda,0}}=e^{-\tau_\lambda}$ where $d\tau_\lambda=\kappa_\lambda\rho ds$\\
+$\rightarrow \tau=+\int_0^S\kappa_\lambda\rho ds$\\
+$m_\lambda-m_{\lambda, 0}=-2.5log_{10}(e^{-\tau_\lambda})\approx 1.086\tau_\lambda$\\
+the un-extincted obs. mag. is: $m_{\lambda, 0}=M_\lambda+(distance \ modulus)=M_\lambda-(5log_{10}d-5)$
+
+
+
+\section{HI-21cm line}
+%c+o p.406\\.
+Spin flip transition of hydrogen electrons. 5.9e-6 eV gives a 21 cm or 1420 MHz emission line.
+ 
+$\tau_H=5.2*10^{-23} \frac{N_H}{T\Delta v}$\\
+
+where $N_H$ is column density in $m^{-2}$ and $\Delta v$ is linewidth in $km/s$. Typically: $\Delta v=10km/2$. 
+
+\(A_{21}=2.9e-15\)[1/s]. The reciprocal of this gives the lifetime ($\sim$10million years).
+
+
+\section{Atmospheric Layers}
+%see cravens p.285.
+\subsection{Thermosphere}
+$>$80-90km on earth. where photo-ionization and photo-disassociation from sunlight begin to be important and the temperature begins to increase due to this energy from UV photons. The bottom of the thermosphere is the "mesopause". the top of the thermosphere is the "exobase" where collisions decrease such that  particle trajectories become ballistic.\\ 
+\subsection{Troposphere}
+$<18km$ tropo means turn/change/reaction.\\
+\subsection{mesophere}
+from 50 to 90km. Meso means intermediate.
+\subsection{exobase}
+@ $>\approx 200km$ on earth.\\
+The bottom of the exosphere. 
+The height integrated density accounts for one mean free path of a fast atom for a constant scale height:
+
+\(\int^{\infty}_{r} c n(r) \sigma dr \approx \sigma n(r_c)H =1\) 
+
+explain more.\\
+at exobase Mean free path: $\boxed{l=\frac{1}{n\sigma}=H=\frac{kT}{gm}}$\\
+ \emph{thus the exobase is where the mean free path equals the constant scale height.}
+(OR according to wikipedia, the top of the exosphere is where solar radiation pressure  on a hydrogen atom exceeds earth's gravitational attraction.)\\
+\subsection{stratosphere} is where $O_3$ ozone is present and absorbing UV. photo-disassociaton and recombination heat the stratosphere. it can be approximated by chapman layer theory and is warmer than the regions above and below (but still cooler than thermosphere). % [EXPAND].
+
+\section{atmospheric Scale Height}
+%from as703, 2009, sept 29th. 
+
+$z$ increasing with radius.
+for both neutrals and plasmas, integrate the fluid dynamic momentum equation. assumptions: quasi-neutral, isothermal, static, one dimensional ($z$):
+
+Hydrostatic Equilibrium  gives:
+
+$ m\vec{g}= \frac{\nabla P}{n}  = kT\frac{\nabla n}{n}= k T \nabla ln(n_e)= kT \frac{\partial (ln(n_e))}{\partial z}$\\
+
+Integrate: $\int (\partial ln(n_e))=ln(n_e)=\int \frac{mg}{ kT}\partial z = \frac{mg}{ kT}z+constant$\\
+this gives H, the neutral scale height.\\ $\therefore \ \
+ n_e=n_o e^{\frac{mg}{ kT}z} -->H=\frac{ k T}{mg}$ ]
+ 
+ Since $z$ is increasing with height, $g$ is negative, and H is positive.
+ 
+ \(\therefore  n_e=n_o e^{-z/H}\)
+
+\section{Leaky Greenhouse}
+See Seager Chapter 9.
+Assume equilibrium. $E_{leaving}=E_{incident}\rightarrow F_{leaving}=F_{incident}$.
+$1-\alpha$ is the atmospheric escape/leakage fraction.
+Incident, Stefan-Boltzmann: $F_i=\sigma T_{equilibrium}^4=\sigma T_{e}^4$.
+
+The flux leaving: $\sigma T_e^4 = \sigma T_a^4+\sigma T_s^4(1-\alpha)$
+
+The surface temperature is the sum of the atmospheric and equilibrium fluxes: 
+\(\sigma T_s^4 =\sigma T_e^4+\sigma T_a^4\)
+
+Solve for $T_s$ to find the surface temperature as a function of $T_e$.
+%\section{Relating Spectral Lines to $\tau$}
+%See \ref{sec:einsteinradiative}.
+%\section{Molecules}
+
+\section{albedos}
+Single scattering: $1-\epsilon$\\
+geometric: ratio of observed flux to flux from lambert disk of the same size. A lambert surface scatters isotropically.\\
+Bond: a fraction of light is incident starlight scattering into $4\pi$ for all $\lambda.$
+Spherical: A monochromatic Bond albedo, into $4\pi$ but not all $\lambda$.\\
+\(A_{bond}=\int_0^\infty A_{spherical} d\nu \)
