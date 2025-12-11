@@ -16,9 +16,15 @@
 \usepackage{setspace}
 \usepackage{amsmath}
 \usepackage{hyperref}
+\usepackage{etoolbox}
+\usepackage{soul}
 % Will Robertson's fontspec.sty can be used to simplify font choices.
 % To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
 % and change "Hoefler Text" to any of these choices.
+
+\newtoggle{midterm}
+\toggletrue{midterm}
+
 
 \usepackage{fontspec,xltxtra,xunicode}
 \defaultfontfeatures{Mapping=tex-text}
@@ -47,6 +53,40 @@
 % Here are some multilingual Unicode fonts: this is Arabic text: {\A السلام عليكم}, this is Hebrew: {\H שלום}, 
 % and here's some Japanese: {\J 今日は}.
 \newpage
+
+\section{basic units}
+see R+L\footnote{
+  Rybicki, George B, and Alan P Lightman. Radiative Processes in Astrophysics. Weinheim: Wiley-VCH, 2004. 
+  Available online from the UArizona library: \url{https://arizona-ua.primo.exlibrisgroup.com/permalink/01UA_INST/1h3gjm1/cdi_nii_cinii_1130000797486359168}
+} chap.1.\
+
+\subsection{Intensity}
+energy per hertz per steradian per area per second, or power per hz per steradian per area.
+\( \boxed{\frac{dE}{dAdt d\nu d\Omega}=I_\nu(x,y,z,\theta,\phi,t)\cos\theta} \) \\
+or \(dE=I_\nu dA dt d\nu d\Omega \) \\
+total intensity: \( I = \int^\infty_{-\infty} I_\nu d\nu \)  \\
+
+$J_\nu \equiv $ the  mean intensity: 
+
+\(J_\nu(r,t)=\frac{1}{4\pi}\int I_\nu d\Omega=\boxed{\frac{1}{4\pi}\int_0^{2\pi}\int_0^\pi I_\nu \sin\theta d\theta d\phi=J_\nu} \) 
+
+
+\subsection{Flux}
+Intensity summed over steradians. (energy per sec per hz per area).\\
+\( F_\nu(\vec{r},\vec{n},t)=\int I_\nu \cos\theta d\Omega=\int_0^{2\pi}\int_0^{\pi}I_\nu\cos\theta \sin\theta d\theta d\phi \) \\
+when integrating flux at surface of emitting source (star, planet, etc...) you just want to integrate outwards. 
+\( F_\nu^{surface}=F_\nu^{out}(r=R)=(2\pi)\frac{\mu^2}{2}I_\nu^+ |^1_0\)
+
+\(\rightarrow I_\nu^+\equiv F_{star}/\pi\equiv \) "Astrophysical flux" is the outward surface flux or the "emergent flux" or just "flux" -- in astronomy.\\
+
+If flux incident on the surface matters than the integral would change.
+
+\subsection{radiation energy density} 
+energy per volume per hz integrated over all steradians, [$\frac{ergs}{cm^3 *hz}$]\\
+\( \mathfrak{u}\equiv \frac{1}{c}\int I_\nu d\Omega=\int u(\Omega)d\Omega \) \\
+from equating: \( dE=I_\nu dAd\Omega dt d\nu \) \\
+and  \( dE= \mathfrak{u}* (dA*c*dt ) d\nu \) \\
+where $(dA*c*dt )$ is the volume of a cylinder the ray is passing through.
 
 
 \section{Emission and Absorption}
@@ -183,8 +223,7 @@ The energy of an electromagnetic wave through a surface perpendicular to the wav
 
 
 \section{Bremsstrahlung}
-
-See: \url{https://casper.astro.berkeley.edu/astrobaki/index.php/Thermal_Bremsstrahlung} and Rybicki and Lightman Chapter 5. 
+{See: \url{https://casper.astro.berkeley.edu/astrobaki/index.php/Thermal_Bremsstrahlung} and Rybicki and Lightman Chapter 5. }
 
 Acceleration of a charge in the coulomb field of another. Breaking Radiation or "Free free".\\
 Assume protons are stationary.\\
@@ -210,7 +249,7 @@ We are only interested in motion perpendicular to the path because the path is n
 (Since $\cos\theta=b/R$; this $b$ is the impact parameter, in the Bremsstrahlung derivation we assume for simplicity electron speed is such that it is approximately a straight line (a small angle approximation)) and thus the impact parameter is the closest approach of the electron to the ion.\\ \(b_{min}\approx \frac{h}{mv}\), $b_{max}\equiv \frac{v}{\omega}\)\\
 
 \section{Einstein Co-efficients}
-Units [\( \frac{1}{sec}]\) 
+Where $\bar{J}$ is the mean intensity and coefficients have units of rate [\( \frac{1}{sec}]\) or rate per intensity.
 \subsection{$A_{21}$ Spontaneous emission}
 \( A_{21}=\frac{prob. \ trans.\ 2 \rightarrow 1}{seconds} \)
 \subsection{Absorption $B_{12}$}
@@ -277,38 +316,6 @@ If not in LTE, the Boltzmann eq. doesn't hold, i.e. \( \frac{n_1}{n_2} \neq \fra
 A "Normal" non-thermal distribution is $\frac{n_1}{g_1}>\frac{n_2}{g_2}$\\
 A an "Inverted" Distribution is: $\frac{n_1}{g_1}<\frac{n_2}{g_2}\rightarrow \alpha<0 $ and is light amplifying (e.g. a MASER..).\\
 
-\section{Line Broadening}
-Irwin 1st Ed. Chapter 9.3, 2nd ed Chapter 11.3. R+L, section 10.6.
-The line shape function describes the morphology of a line and integrates to unity:
-
-\(\int_{-\infty}^{\infty}\Phi(\nu)d\nu=1\)
-
-\subsection{Doppler:}
-\( \nu_D=\frac{\nu_0}{c}\sqrt{\frac{2kT}{m_a}} \) (neglecting turbulence)\\
-since $V_d=v_{therm}$ and $\nu_D=\nu_0 V_d/c$\\
-and $\Delta \lambda=2\frac{\lambda^2}{c}\sqrt{\frac{2kT}{m}}\) \\
-since $\Delta \lambda/\lambda_0=v/c$\\
-Doppler Line profile:\\
-\( \phi(\nu)=\frac{1}{\nu_D\sqrt{\pi}}e^{-(\nu-\nu_0)^2/\Delta \nu_D^2} \)
-(Get this from plugging doppler into a Maxwell-Boltzmann distribution)\\
-\subsection{natural broadening:}
-From Heisenberg Uncertainty. \\
-\( \Delta \lambda=\frac{hc}{\Delta E}=\frac{hc}{\frac{\hbar}{\Delta t}} = \frac{\lambda^2}{2\pi c}(\frac{1}{\Delta t_i}-\frac{1}{\Delta t_f}) \) \\
-\( \gamma =\Sigma_{n'} A_{n n'}=\) total spontaneous decay from n summed of  $n'$ ( all lower levels). (This is Einstein A).\\
-\( \phi(\nu)=\frac{\gamma/4\pi^3}{(\nu-\nu_0)^2+(\gamma/4\pi)^2 }\)\\
-\subsection{for collisional} $\gamma\rightarrow \Gamma=\gamma+2\nu_{coll} $\\
-and $ \phi(\nu) $ is the convolved doppler and lorentz  profiles.\\
-
-
-\section{Photo-ionization}
-
- $r_{stromgren}\approx (\frac{3N}{4\pi\alpha})^{1/3}n_H^{-2/3}$\\
-Find by considering Equalibrium and: $N=number_{photons}/sec$ from a star generating ionizing radiation (O or B type) in the Lyman continuum ($\lambda <91.2nm$), $\alpha$=QM recombination coeffiency. $n_e=n_H$ if it's a pure hydrogen cloud.\\ 
-equilibrium means: \\electron ion recombination rate = ionizing photon rate.\\
-$\rightarrow \alpha n_e n_H (\frac{4}{3}\pi R^3_s)= \alpha n_H^2(\frac{4}{3}\pi R^3_s)=N$\\
-this recombination in a HII region leads to a cascade of transition $n=3\rightarrow n=2$=red optical balmer emisison, as in Orion Neb.  and that's what you see in visible.
-
-
 \section{Maxwell's Equations }
 \subsection{maxwell's equations in SI units}  
 in MKS or SI units, Maxwell's equations are:
@@ -362,9 +369,11 @@ $\vec{E}=\hat{a_1}E_0e^{i(\vec{k}\cdot\vec{r} -\omega t)}$ or $\vec{B}=\hat{a_2}
  
  An atmosphere that is horizontally continuous and infinite and vertically layered and thus axially symmetric. 
 The mean intensity is given by: 
-\( J_\nu(z)=\frac{1}{4\pi}\int_0^\pi(z,\theta)2\pi \sin\theta d\omega= \frac{1}{2}\int_{-1}^{+1}I_\nu d\mu\)
+\( J_\nu(z)=\frac{1}{4\pi}\int_0^\pi I(z,\theta)2\pi \sin\theta d\omega= \frac{1}{2}\int_{-1}^{+1}I_\nu d\mu\)
 where:
 $\mu \equiv \cos(\theta)$
+
+In Plane parallel flux is: \(  2\pi \int_{0}^{+1}\mu I_\nu d\mu- 2\pi \int_{0}^{-1}\mu I_\nu d\mu \) \\
 
 \section{Boltzmann Equation}
  The ratio of probabilities (P) that a system will be in a $g_b$ degenerate state, which has the energy  $E_b$, vs. a $g_a$ state with energy $E_a$. For a collection of atoms in different states:\\
@@ -384,6 +393,100 @@ $v_{rms}=\sqrt{\frac{3kT}{m}}$ (higher because of the long tail...).\\
 
  energy density: $u=\frac{4\pi}{c}\int_0^\infty B_\lambda(T)d\lambda=aT^4=\pi*flux/c$\\
  Where  $a=4\sigma/c$\\
+
+
+\section{Cyclotron Emission}
+
+non-relativistic,  $\beta$ is small so can use Larmors formula for a single electron (R+L 3.19): $P=\frac{2q^2\dot{u}^2}{3c^3}\)
+
+
+Solve Lorentz force for equation of motion in $v_x$ or $v_y$ where $\vec{v_\perp}=v_x \hat{x} +v_y \hat{y}$ and $v_\parallel$ is a constant:
+
+
+\( m\frac{d\vec{v}}{dt}=\frac{q}{c}(\vec{v}\times\vec{B})\)
+
+Gyro-frequency:
+
+\(\Omega\equiv \frac{qB}{mc}\)
+
+Gyro-radius:
+\(r_0\equiv\frac{mv_\perp c}{qB}\)
+
+Syncrotron is relativistic cyclotron, 
+$v_\perp\approx c$ and apply Lorentz factor to the mass and gyro radius.
+
+
+
+
+\iftoggle{midterm}{}{
+
+\section{Line Broadening}
+\hl{Irwin 1st Ed. Chapter 9.3, 2nd ed Chapter 11.3. R+L, section 10.6.}
+The line shape function describes the morphology of a line and integrates to unity:
+
+\(\int_{-\infty}^{\infty}\Phi(\nu)d\nu=1\)
+
+\subsection{Doppler:}
+\( \nu_D=\frac{\nu_0}{c}\sqrt{\frac{2kT}{m_a}} \) (neglecting turbulence)\\
+since $V_d=v_{therm}$ and $\nu_D=\nu_0 V_d/c$\\
+and $\Delta \lambda=2\frac{\lambda^2}{c}\sqrt{\frac{2kT}{m}}\) \\
+since $\Delta \lambda/\lambda_0=v/c$\\
+Doppler Line profile:\\
+\( \phi(\nu)=\frac{1}{\nu_D\sqrt{\pi}}e^{-(\nu-\nu_0)^2/\Delta \nu_D^2} \)
+(Get this from plugging doppler into a Maxwell-Boltzmann distribution)\\
+\subsection{natural broadening:}
+From Heisenberg Uncertainty. \\
+\( \Delta \lambda=\frac{hc}{\Delta E}=\frac{hc}{\frac{\hbar}{\Delta t}} = \frac{\lambda^2}{2\pi c}(\frac{1}{\Delta t_i}-\frac{1}{\Delta t_f}) \) \\
+\( \gamma =\Sigma_{n'} A_{n n'}=\) total spontaneous decay from n summed of  $n'$ ( all lower levels). (This is Einstein A).\\
+\( \phi(\nu)=\frac{\gamma/4\pi^3}{(\nu-\nu_0)^2+(\gamma/4\pi)^2 }\)\\
+\subsection{for collisional} $\gamma\rightarrow \Gamma=\gamma+2\nu_{coll} $\\
+and $ \phi(\nu) $ is the convolved doppler and lorentz  profiles.\\
+
+
+\section{Photo-ionization}
+
+ $r_{stromgren}\approx (\frac{3N}{4\pi\alpha})^{1/3}n_H^{-2/3}$\\
+Find by considering Equalibrium and: $N=number_{photons}/sec$ from a star generating ionizing radiation (O or B type) in the Lyman continuum ($\lambda <91.2nm$), $\alpha$=QM recombination coeffiency. $n_e=n_H$ if it's a pure hydrogen cloud.\\ 
+equilibrium means: \\electron ion recombination rate = ionizing photon rate.\\
+$\rightarrow \alpha n_e n_H (\frac{4}{3}\pi R^3_s)= \alpha n_H^2(\frac{4}{3}\pi R^3_s)=N$\\
+this recombination in a HII region leads to a cascade of transition $n=3\rightarrow n=2$=red optical balmer emisison, as in Orion Neb.  and that's what you see in visible.
+
+}
+
+\section{Black Body Radiation}
+
+an enclosure sealed until TE and looking in doesn't allow energy to flow. Photon number is not conserved. $B_\nu(T)$ is isotropic with no $\Omega$ dependence.
+ \(S_\nu=B_\nu(T) \rightarrow \boxed{j_\nu=\alpha_\nu B_\nu(T)} \) (KIRCHOFF's LAW).\\
+\(\frac{dI_\nu}{ds}=-\alpha_\nu I_\nu+\alpha_\nu B_\nu(T) \) \\
+\(\frac{dI_\nu}{d\tau_\nu}=-I_\nu+B_\nu(T) \) \\
+for TE radiation is BB: $I_\nu=B_\nu$\
+whereas Thermal RADIATION is \(S_\nu= B_\nu \) in an optically THICK media.\\
+
+From quantization we derive the black body spectrum:
+
+$B_\lambda (T)=\frac{2hc^2/\lambda^5}{e^{hc/(\lambda KT)}-1}$
+
+Convert by conservation of energy, $d\lambda B_\lambda= d_\nu B_\nu$:
+
+$B_\nu (T)=\frac{2h\nu^3/c^2}{e^{h\nu/(K T)}-1}$
+
+
+\subsection{Effective temperature}
+The temperature if a system such as a star were black body.
+
+\subsection{Rayleigh-Jeans}
+\( h\nu << kT \) then $e^{\frac{h\nu}{kT}}=1+\frac{h\nu}{kT} \) \\
+\(\frac{2\nu^2kT}{c^2}=I_\nu\)\\
+Can solve Rayleigh Jean's for Brightness Temperature: $T_b=\frac{c^2}{2\nu^2k}I_\nu$\\\
+
+\subsection{Wein's Law} \( h\nu >>kT \)  \\
+then $e^{\frac{h\nu}{kT}}>>1$\\
+for UV/x-ray emission of Sun type star.\\
+\subsection{Wein Displacement}
+derive by setting $\frac{\partial B_\nu}{d\nu}=0\) at $\nu_{max}$\\
+\(\rightarrow h\nu_{max}=2.82kT \)
+\(\boxed{\rightarrow \lambda_{max}=2.9*10^{-3}m*K }\)
+
 
 \include{partII}
 \end{document}  
